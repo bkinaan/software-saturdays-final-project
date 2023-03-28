@@ -20,6 +20,7 @@ Below is a list of where all the requirements are located in the project.
     - There is also some inline CSS in App.js
 6. One user interactive element
     - Every pokemon has a button that adds it to the team
+    - There is a button to load more pokemon from pokeAPI
 7. Load images of each pokemon
     - Done ✓
     - API call in PokeList.js and images used in Pokemon.js
