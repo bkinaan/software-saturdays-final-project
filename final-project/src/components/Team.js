@@ -1,7 +1,9 @@
 function Team() {
     return (
         <>
-        Team
+        <div className='flex justify-center'>
+        <h2 className=''>Team</h2>
+        </div>
         </>
     )
 }

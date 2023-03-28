@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Pokemon from "./Pokemon";
-import '../stylesheets/PokeList.css';
+import '../index.css';
 function PokeList() {
-    const [pokemon, setPokemon] = useState(0);
+    const [pokemon, setPokemon] = useState("");
+    const [limit, setLimit] = useState(12);
 
     const handleFetch = (response) => {
         console.log(response.status);
@@ -16,7 +17,7 @@ function PokeList() {
                 const pokemonData = await pokemonResponse.json();
                 const types = pokemonData.types;
                 return <Pokemon
-                    class="pokemons"
+                    class="pokemon"
                     name={item.name} 
                     img={pokemonData.sprites.front_default}
                     types={types}
@@ -33,16 +34,29 @@ function PokeList() {
     }
 
     useEffect( () =>  {
-        const url = "https://pokeapi.co/api/v2/pokemon/?limit=10&offset=0";
+        //let limit = 30;
+        const url = `https://pokeapi.co/api/v2/pokemon/?limit=${limit}&offset=0`;
         fetch(url)
         .then(handleFetch)
         .then(handleResponse)
         .catch(handleError);
-    }, [])
+    });
+
+    const handleClick = () => {
+        setLimit(limit + 12);
+    };
     
     return (
         <>
-        {pokemon}
+            <div className='flex justify-center'>
+                <div className='grid grid-cols-3 gap-20'>
+                    {pokemon}
+                </div>
+            </div>
+        
+        <div className='flex justify-center'>
+            <button onClick={handleClick}>Load More</button>
+        </div>
         </>
     )
 }
