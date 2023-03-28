@@ -30,7 +30,12 @@ function PokeList() {
     const handleError = (error) => {
         console.log("uh oh error");
         console.log(error);
-        setPokemon(<h1>AHHHHHHHHHH</h1>);
+        setPokemon(<h1 className='
+            font-bold
+            text-center
+            text-lg'>
+                Yikes! Something went wrong.
+        </h1>);
     }
 
     useEffect( () =>  {
@@ -40,7 +45,7 @@ function PokeList() {
         .then(handleFetch)
         .then(handleResponse)
         .catch(handleError);
-    });
+    }, [limit]);
 
     const handleClick = () => {
         setLimit(limit + 12);
@@ -48,14 +53,33 @@ function PokeList() {
     
     return (
         <>
-            <div className='flex justify-center'>
-                <div className='grid grid-cols-3 gap-20'>
+            <div className='
+                flex justify-center'>
+                <div className='
+                    grid
+                    grid-cols-3
+                    gap-20'>
+                <h2 className='
+                    font-bold
+                    text-7xl
+                    col-span-full
+                    flex justify-center
+                    text-title'>
+                        Pokemon List</h2>
                     {pokemon}
                 </div>
             </div>
         
-        <div className='flex justify-center'>
-            <button onClick={handleClick}>Load More</button>
+        <div className='flex justify-center py-10'>
+            <button className='
+                w-48 h-8 
+                bg-light-blue 
+                hover:bg-blue
+                hover:scale-125
+                rounded-xl
+                border-spacing-1'
+                onClick={handleClick}>
+                    Load More</button>
         </div>
         </>
     )
