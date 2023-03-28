@@ -3,6 +3,8 @@
 ## Requirements
 Below is a list of where all the requirements are located in the project.
 
+### Must Have
+
 1. 2 Custom components
     - PokeList.js
     - Pokemon.js
@@ -22,4 +24,4 @@ Below is a list of where all the requirements are located in the project.
     - Done ✓
     - API call in PokeList.js and images used in Pokemon.js
 
-Pick 2: (Work in progress....)
+### Pick 2: (Work in progress....)
