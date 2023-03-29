@@ -1,7 +1,13 @@
 import '../index.css';
 function Pokemon(props) {
+    let name = props.name;
     let types = props.types;
     console.log(props.class)
+
+    // make the first character in the name capital
+    const capitalizeFirst = (str) => {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    }
     
     // put type names in a list
     let typeNames = types.map(type => type.type.name);
@@ -18,18 +24,23 @@ function Pokemon(props) {
             h-50
             w-32
             p-4
-            border-4'
+            border-4 rounded-xl'
             key={props.name}>
             <h1
                 className='
                     font-bold
-                    text-title'>
-            {props.name}</h1>
-            <ul>
+                    text-3xl
+                    text-title
+                    flex
+                    justify-center'>
+            {capitalizeFirst(name)}</h1>
+            <hr></hr>
+            <div className='flex justify-center gap-3'>
+                <p className='font-bold text-green'>Type(s):</p>
                 {typeNames.map(typeName => (
-                    <li className='text-title' key={typeName}>{typeName}</li>
+                    <p>{typeName}</p>
                 ))}
-            </ul>
+            </div>
             <div className='flex justify-center'><img src={props.img} alt='avatar'></img></div>
             <button
                 className='
