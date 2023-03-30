@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 
 function Team(props) {
     // team stuff
-    const [pokemon, setPokemon] = useState();
+    const [pokemon, setPokemon] = useState("");
 
     
 
@@ -114,9 +114,9 @@ function Team(props) {
         </div>
         <div>
         <button onClick={readData}>Read Data</button><br /><br />
-            <button onClick={createData}>Create Data</button><br /><br />
-            <button onClick={updateData}>Update Data</button><br /><br />
-            <button onClick={deleteData}>Delete Data</button><br /><br />
+        <button onClick={createData}>Create Data</button><br /><br />
+        <button onClick={updateData}>Update Data</button><br /><br />
+        <button onClick={deleteData}>Delete Data</button><br /><br />
             </div>
         </div>
         </>

@@ -8,6 +8,7 @@ import { getDatabase } from "firebase/database";
 const firebaseConfig = {
   apiKey: "AIzaSyDOrmZAF1AHaCoI96z4oHc_VKWKPPe6fnQ",
   authDomain: "software-saturdays-final.firebaseapp.com",
+  databaseURL: "https://software-saturdays-final-default-rtdb.firebaseio.com",
   projectId: "software-saturdays-final",
   storageBucket: "software-saturdays-final.appspot.com",
   messagingSenderId: "1080875423899",
