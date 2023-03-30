@@ -2,7 +2,17 @@ import { database } from '../database.js';
 import { set, update, onValue, ref, off, remove } from 'firebase/database';
 import React, { useEffect, useState } from 'react';
 
-function Team() {
+function Team(props) {
+    // team stuff
+    const [pokemon, setPokemon] = useState();
+
+    
+
+
+
+
+    //----------------------
+    // firebase stuff
     const [data, setData] = useState();
 
     const createData = () => {
