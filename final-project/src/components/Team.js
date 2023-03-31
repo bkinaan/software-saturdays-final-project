@@ -1,13 +1,12 @@
 import { database } from '../database.js';
-import { set, update, onValue, ref, off, remove } from 'firebase/database';
+import { set, onValue, ref, off, remove } from 'firebase/database';
 import React, { useEffect, useState } from 'react';
 
 function Team(props) {
     // team stuff
-    const [pokemon, setPokemon] = useState("");
+    // const [pokemon, setPokemon] = useState("");
 
     
-
 
 
 
@@ -15,12 +14,12 @@ function Team(props) {
     // firebase stuff
     const [data, setData] = useState();
 
-    const createData = () => {
+    const createData = (name, types) => {
         let data = {
-            key: 'value',
-            otherkey: 'other value',
+            name: {name},
+            types: {types},
         }
-        const dataRef = ref(database, '/added');
+        const dataRef = ref(database, `/${name}`);
         set(dataRef, data)
         .then(() => {
             console.log("Set was successful");
@@ -44,7 +43,7 @@ function Team(props) {
         })
     }
 
-    const updateData = () => {
+    /* const updateData = () => {
         let data = { // TODO: replace data with pokemon fields
             otherKey: 'new value',
         }
@@ -61,10 +60,10 @@ function Team(props) {
         console.log('--------------------');
         console.log('--------------------');
         console.log('--------------------');
-    }
+    } */
 
-    const deleteData = () => {
-        const dataRef = ref(database, '/added'); // TODO: replace 'added' with key
+    const deleteData = (name) => {
+        const dataRef = ref(database, `/${name}`); // TODO: replace 'added' with key
         remove(dataRef)
         .then(() => {
             console.log("Remove was successful");
@@ -114,9 +113,9 @@ function Team(props) {
         </div>
         <div>
         <button onClick={readData}>Read Data</button><br /><br />
-        <button onClick={createData}>Create Data</button><br /><br />
-        <button onClick={updateData}>Update Data</button><br /><br />
-        <button onClick={deleteData}>Delete Data</button><br /><br />
+        <button onClick={createData("pikachu", "fire")}>Create Data</button><br /><br />
+        {/* <button onClick={updateData}>Update Data</button><br /><br /> */}
+        <button onClick={deleteData("pikachu")}>Delete Data</button><br /><br />
             </div>
         </div>
         </>

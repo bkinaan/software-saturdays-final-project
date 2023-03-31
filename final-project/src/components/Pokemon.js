@@ -2,7 +2,7 @@ import '../index.css';
 function Pokemon(props) {
     let name = props.name;
     let types = props.types;
-    console.log(props.class)
+    //console.log(props.class)
 
     // make the first character in the name capital
     const capitalizeFirst = (str) => {
