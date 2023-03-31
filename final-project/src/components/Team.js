@@ -2,7 +2,10 @@ import { database } from '../database.js';
 import { set, onValue, ref, off, remove } from 'firebase/database';
 import React, { useEffect, useState } from 'react';
 
-function Team(props) {
+let createData;
+let deleteData;
+
+function Team() {
     // team stuff
     // const [pokemon, setPokemon] = useState("");
 
@@ -16,8 +19,8 @@ function Team(props) {
 
     const createData = (name, types) => {
         let data = {
-            name: {name},
-            types: {types},
+            name: `${name}`,
+            types: `${types}`,
         }
         const dataRef = ref(database, `/${name}`);
         set(dataRef, data)
@@ -112,10 +115,10 @@ function Team(props) {
             { data ? Object.keys(data).map((key) => <div>{key}</div>) : null}
         </div>
         <div>
-        <button onClick={readData}>Read Data</button><br /><br />
-        <button onClick={createData("pikachu", "fire")}>Create Data</button><br /><br />
+        {/* <button onClick={() => readData}>Read Data</button><br /><br /> */}
+        <button onClick={() => createData("pikachu", "fire")}>Create Data</button><br /><br />
         {/* <button onClick={updateData}>Update Data</button><br /><br /> */}
-        <button onClick={deleteData("pikachu")}>Delete Data</button><br /><br />
+        <button onClick={() => deleteData("pikachu")}>Delete Data</button><br /><br />
             </div>
         </div>
         </>
@@ -123,3 +126,5 @@ function Team(props) {
 }
 
 export default Team;
+export { createData };
+export { deleteData };
