@@ -52,6 +52,7 @@ function Pokemon(props) {
             </div>
             <div className='flex justify-center'><img src={props.img} alt='avatar'></img></div>
             <button
+                onClick={handleButtonClick}
                 disabled={ableToBeRemoved}
                 className='
                     bg-light-light-green

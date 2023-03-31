@@ -8,6 +8,7 @@ let deleteData;
 function Team() {
     // team stuff
     // const [pokemon, setPokemon] = useState("");
+    const [count, setCount] = useState(0);
 
     
 
@@ -17,7 +18,7 @@ function Team() {
     // firebase stuff
     const [data, setData] = useState();
 
-    const createData = (name, types) => {
+    createData = (name, types) => {
         let data = {
             name: `${name}`,
             types: `${types}`,
@@ -33,7 +34,7 @@ function Team() {
         });
     }
 
-    const readData = () => {
+   /*  const readData = () => {
         const dataRef = ref(database, '/');
         onValue(dataRef, (snap) => {
             for (let key in snap.val()) {
@@ -44,7 +45,7 @@ function Team() {
                 console.log('--------------------');
             }
         })
-    }
+    } */
 
     /* const updateData = () => {
         let data = { // TODO: replace data with pokemon fields
@@ -65,7 +66,7 @@ function Team() {
         console.log('--------------------');
     } */
 
-    const deleteData = (name) => {
+    deleteData = (name) => {
         const dataRef = ref(database, `/${name}`); // TODO: replace 'added' with key
         remove(dataRef)
         .then(() => {
@@ -86,11 +87,13 @@ function Team() {
             setData(snap.val());
             for (let key in snap.val()) {
                 console.log(key, ':');
+                setCount(count + 1);
                 for (let sub_key in snap.val()[key]) {
                     console.log('    ', sub_key, ':', snap.val()[key][sub_key]);
                 }
                 console.log('-----------------');
             }
+            console.log("count:", count);
         });
 
         return () => {
@@ -116,9 +119,9 @@ function Team() {
         </div>
         <div>
         {/* <button onClick={() => readData}>Read Data</button><br /><br /> */}
-        <button onClick={() => createData("pikachu", "fire")}>Create Data</button><br /><br />
+        {/* <button onClick={() => createData("pikachu", "fire")}>Create Data</button><br /><br /> */}
         {/* <button onClick={updateData}>Update Data</button><br /><br /> */}
-        <button onClick={() => deleteData("pikachu")}>Delete Data</button><br /><br />
+        {/* <button onClick={() => deleteData("pikachu")}>Delete Data</button><br /><br /> */}
             </div>
         </div>
         </>
@@ -126,5 +129,4 @@ function Team() {
 }
 
 export default Team;
-export { createData };
-export { deleteData };
+export { createData, deleteData };

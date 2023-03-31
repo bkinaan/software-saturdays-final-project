@@ -17,8 +17,12 @@ function App() {
     <div className='bg-gradient-to-br from-light-light-green to-blue'>
     <Team />
     <PokeList />
+    <div
+        className='text-right pr-4 pb-4'
+      >Source Code on <a href='https://github.com/bkinaan/software-saturdays-final-project'>GitHub</a></div>
     </div>
     </div>
+    
     </>
   );
 }
