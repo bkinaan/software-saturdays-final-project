@@ -7,15 +7,6 @@ let createData;
 let deleteData;
 
 function Team(props) {
-    // team stuff
-
-    //const [list, setList] = useState(props.list);
-    
-    const removeFromList = (name) => {
-        props.removeFromList(name);
-    }
-
-
     //----------------------
     // firebase stuff
     const [data, setData] = useState();
@@ -95,7 +86,7 @@ function Team(props) {
             name={key}
             key={`TeamPokemon-${key}`}
             list={props.list}
-            removeFromList={removeFromList}
+            removeFromList={props.removeFromList}
             count={props.count}
             />) : <EmptyTeam />}
         </div>
