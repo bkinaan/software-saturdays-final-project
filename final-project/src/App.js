@@ -19,7 +19,7 @@ function App() {
     <PokeList />
     <div
         className='text-right pr-4 pb-4'
-      >Source Code on <a href='https://github.com/bkinaan/software-saturdays-final-project'>GitHub</a></div>
+      >Source Code on <a className='underline' href='https://github.com/bkinaan/software-saturdays-final-project'>GitHub</a></div>
     </div>
     </div>
     
