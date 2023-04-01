@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Pokemon from "./Pokemon";
 import '../index.css';
-function PokeList() {
+function PokeList(props) {
     const [pokemon, setPokemon] = useState("");
     const [limit, setLimit] = useState(12);
 
@@ -18,9 +18,12 @@ function PokeList() {
                 const types = pokemonData.types;
                 return <Pokemon
                     key={`Pokemon-${item.name}`}
-                    name={item.name} 
+                    name={item.name}
                     img={pokemonData.sprites.front_default}
                     types={types}
+                    list={props.list}
+                    addToList={props.addToList}
+                    count={props.count}
                 />
             })
         );
@@ -28,7 +31,7 @@ function PokeList() {
     }
 
     const handleError = (error) => {
-        console.log("uh oh error");
+        console.log("There seems to be an error.");
         console.log(error);
         setPokemon(<h1 className='
             font-bold
@@ -45,7 +48,9 @@ function PokeList() {
         .then(handleFetch)
         .then(handleResponse)
         .catch(handleError);
-    }, [limit]);
+    }, [limit, props.count]);
+
+    
 
     const handleClick = () => {
         setLimit(limit + 12);

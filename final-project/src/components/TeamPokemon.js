@@ -1,15 +1,9 @@
 import '../index.css'
 import { deleteData } from "./Team";
-import { count, setCount, setList, list } from './Team';
 function TeamPokemon(props) {
     let handleButtonClick = () => {
-        setCount(count - 1);
         deleteData(props.name);
-        /* console.log("before remove", list);
-        setList(prevState => ({
-            list: prevState.filter(item => item !== props.name)
-        }));
-        console.log("after remove", list); */
+        props.removeFromList(props.name);
     }
 
     const capitalizeFirst = (str) => {

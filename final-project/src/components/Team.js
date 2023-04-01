@@ -6,18 +6,14 @@ import EmptyTeam from './EmptyTeam.js';
 let createData;
 let deleteData;
 
-let count;
-let setCount;
-let list;
-let setList;
-
-function Team() {
+function Team(props) {
     // team stuff
-    [count, setCount] = useState(0);
-    [list, setList] = useState([]);
 
+    //const [list, setList] = useState(props.list);
     
-
+    const removeFromList = (name) => {
+        props.removeFromList(name);
+    }
 
 
     //----------------------
@@ -40,7 +36,7 @@ function Team() {
     }
 
     deleteData = (name) => {
-        const dataRef = ref(database, `/${name}`); // TODO: replace 'added' with key
+        const dataRef = ref(database, `/${name}`);
         remove(dataRef)
         .then(() => {
             console.log("Remove was successful");
@@ -60,15 +56,13 @@ function Team() {
             let firebaseCount = 0;
             let firebaseList = [];
             for (let key in snap.val()) {
-                console.log(key, ':');
                 for (let sub_key in snap.val()[key]) {
-                    // console.log('    ', sub_key, ':', snap.val()[key][sub_key]);
                     firebaseList.push(snap.val()[key][sub_key]);
                     firebaseCount++;
                 }
-                //console.log('-----------------');
             }
-            setCount(firebaseCount);
+            props.updateCount(firebaseCount);
+            props.updateList(firebaseList);
         }, []);
 
         return () => {
@@ -76,7 +70,7 @@ function Team() {
             off(dataRef);
             console.log("Removed listener");
         }
-    }, [])
+    }, [props])
 
     return (
         <>
@@ -100,13 +94,16 @@ function Team() {
         { data ? Object.keys(data).map((key) => <TeamPokemon
             name={key}
             key={`TeamPokemon-${key}`}
+            list={props.list}
+            removeFromList={removeFromList}
+            count={props.count}
             />) : <EmptyTeam />}
         </div>
         </div>
-        <h1 className='flex justify-center'>Team count: {count}/6</h1>
+        <h1 className='flex justify-center'>Team count: {props.count}/6</h1>
         </>
     )
 }
 
 export default Team;
-export { createData, deleteData, count, setCount, list, setList };
+export { createData, deleteData };

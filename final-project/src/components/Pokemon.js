@@ -1,5 +1,5 @@
 import '../index.css';
-import { createData, count, setCount, list, setList } from './Team';
+import { createData } from './Team';
 function Pokemon(props) {
     let name = props.name;
     let types = props.types;
@@ -10,15 +10,15 @@ function Pokemon(props) {
     }
 
     let handleButtonClick = () => {
-        //console.log("about to add",list);
-        if (list.includes(name)) {
+        if (props.list.includes(name)) {
             alert("You already have this pokemon on your team!");
-        } else if ( count === 6) {
+        } else if ( props.count === 6) {
             alert("You can't have more than 6 pokemon on your team!");  
         } else {
-            setCount(count + 1);
-            createData(props.name);
-            setList([...list, name]);
+            //props.setCount(props.count + 1);
+            createData(name);
+            /* props.setList([...props.list, name]); */
+            props.addToList(name);
         }
     }
     
