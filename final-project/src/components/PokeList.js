@@ -41,8 +41,7 @@ function PokeList(props) {
         </h1>);
     }
 
-    useEffect( () =>  {
-        //let limit = 30;
+    useEffect(() =>  {
         const url = `https://pokeapi.co/api/v2/pokemon/?limit=${limit}&offset=0`;
         fetch(url)
         .then(handleFetch)
