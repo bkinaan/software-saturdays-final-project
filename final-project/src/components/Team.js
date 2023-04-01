@@ -1,14 +1,20 @@
 import { database } from '../database.js';
 import { set, onValue, ref, off, remove } from 'firebase/database';
 import React, { useEffect, useState } from 'react';
-
+import TeamPokemon from './TeamPokemon';
+import EmptyTeam from './EmptyTeam.js';
 let createData;
 let deleteData;
 
+let count;
+let setCount;
+let list;
+let setList;
+
 function Team() {
     // team stuff
-    // const [pokemon, setPokemon] = useState("");
-    const [count, setCount] = useState(0);
+    [count, setCount] = useState(0);
+    [list, setList] = useState([]);
 
     
 
@@ -18,10 +24,9 @@ function Team() {
     // firebase stuff
     const [data, setData] = useState();
 
-    createData = (name, types) => {
+    createData = (name) => {
         let data = {
             name: `${name}`,
-            types: `${types}`,
         }
         const dataRef = ref(database, `/${name}`);
         set(dataRef, data)
@@ -34,38 +39,6 @@ function Team() {
         });
     }
 
-   /*  const readData = () => {
-        const dataRef = ref(database, '/');
-        onValue(dataRef, (snap) => {
-            for (let key in snap.val()) {
-                console.log(key, ':');
-                for (let sub_key in snap.val()[key]) {
-                    console.log('   ', sub_key, ':', snap.val()[key][sub_key]);
-                }
-                console.log('--------------------');
-            }
-        })
-    } */
-
-    /* const updateData = () => {
-        let data = { // TODO: replace data with pokemon fields
-            otherKey: 'new value',
-        }
-        const dataRef = ref(database, 'added'); // TODO: replace 'added' with key
-        update(dataRef, data)
-        .then(() => {
-            console.log("Update was successful");
-        })
-        .catch((error) => {
-            console.log("Update failed");
-            console.log(error);
-        });
-
-        console.log('--------------------');
-        console.log('--------------------');
-        console.log('--------------------');
-    } */
-
     deleteData = (name) => {
         const dataRef = ref(database, `/${name}`); // TODO: replace 'added' with key
         remove(dataRef)
@@ -77,24 +50,26 @@ function Team() {
             console.log(error);
         });
         console.log('--------------------');
-        console.log('--------------------');
-        console.log('--------------------');
     }
 
     useEffect(() => {
         const dataRef = ref(database, '/');
         onValue(dataRef, (snap) => {
+            //setCount(0);
             setData(snap.val());
+            let firebaseCount = 0;
+            let firebaseList = [];
             for (let key in snap.val()) {
                 console.log(key, ':');
-                setCount(count + 1);
                 for (let sub_key in snap.val()[key]) {
-                    console.log('    ', sub_key, ':', snap.val()[key][sub_key]);
+                    // console.log('    ', sub_key, ':', snap.val()[key][sub_key]);
+                    firebaseList.push(snap.val()[key][sub_key]);
+                    firebaseCount++;
                 }
-                console.log('-----------------');
+                //console.log('-----------------');
             }
-            console.log("count:", count);
-        });
+            setCount(firebaseCount);
+        }, []);
 
         return () => {
             const dataRef = ref(database, '/');
@@ -107,26 +82,31 @@ function Team() {
         <>
         <div className='
             flex
-            justify-center'>
+            justify-center
+            pb-10'>
+                <div className='
+                    grid
+                    grid-cols-3
+                    gap-20'>
             <h2 className='
                 text-7xl
                 font-bold
-                text-title'>
+                text-title
+                col-span-full
+                flex justify-center'>
                     Team
         </h2>
-        <div>
-            { data ? Object.keys(data).map((key) => <div>{key}</div>) : null}
+
+        { data ? Object.keys(data).map((key) => <TeamPokemon
+            name={key}
+            key={`TeamPokemon-${key}`}
+            />) : <EmptyTeam />}
         </div>
-        <div>
-        {/* <button onClick={() => readData}>Read Data</button><br /><br /> */}
-        {/* <button onClick={() => createData("pikachu", "fire")}>Create Data</button><br /><br /> */}
-        {/* <button onClick={updateData}>Update Data</button><br /><br /> */}
-        {/* <button onClick={() => deleteData("pikachu")}>Delete Data</button><br /><br /> */}
-            </div>
         </div>
+        <h1 className='flex justify-center'>Team count: {count}/6</h1>
         </>
     )
 }
 
 export default Team;
-export { createData, deleteData };
+export { createData, deleteData, count, setCount, list, setList };
