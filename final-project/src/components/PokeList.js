@@ -17,8 +17,7 @@ function PokeList() {
                 const pokemonData = await pokemonResponse.json();
                 const types = pokemonData.types;
                 return <Pokemon
-                    key={item.name}
-                    class="pokemon"
+                    key={`Pokemon-${item.name}`}
                     name={item.name} 
                     img={pokemonData.sprites.front_default}
                     types={types}
