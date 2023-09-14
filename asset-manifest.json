@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/kinaan.me/pokemon-database/static/css/main.b867de53.css",
-    "main.js": "/kinaan.me/pokemon-database/static/js/main.260cc06c.js",
-    "static/media/pokemon-background.webp": "/kinaan.me/pokemon-database/static/media/pokemon-background.041aeaabcfd482c98ad3.webp",
-    "index.html": "/kinaan.me/pokemon-database/index.html",
-    "main.b867de53.css.map": "/kinaan.me/pokemon-database/static/css/main.b867de53.css.map",
-    "main.260cc06c.js.map": "/kinaan.me/pokemon-database/static/js/main.260cc06c.js.map"
+    "main.css": "/kinaan.me/software-saturdays-final-project/static/css/main.6b2bb21f.css",
+    "main.js": "/kinaan.me/software-saturdays-final-project/static/js/main.78320885.js",
+    "static/media/pokemon-background.webp": "/kinaan.me/software-saturdays-final-project/static/media/pokemon-background.041aeaabcfd482c98ad3.webp",
+    "index.html": "/kinaan.me/software-saturdays-final-project/index.html",
+    "main.6b2bb21f.css.map": "/kinaan.me/software-saturdays-final-project/static/css/main.6b2bb21f.css.map",
+    "main.78320885.js.map": "/kinaan.me/software-saturdays-final-project/static/js/main.78320885.js.map"
   },
   "entrypoints": [
-    "static/css/main.b867de53.css",
-    "static/js/main.260cc06c.js"
+    "static/css/main.6b2bb21f.css",
+    "static/js/main.78320885.js"
   ]
 }
